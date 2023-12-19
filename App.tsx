@@ -1,17 +1,22 @@
 import React from "react";
-import BleManager, { BleDisconnectPeripheralEvent, BleScanCallbackType, BleScanMatchMode, BleScanMode, Peripheral } from 'react-native-ble-manager'
-import { Alert, NativeEventEmitter, NativeModules } from "react-native";
-import { FlatList, PermissionsAndroid, Platform, Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
-import { isLocationEnabled, promptForEnableLocationIfNeeded } from "react-native-android-location-enabler";
-const BleManagerModule = NativeModules.BleManager;
-const bleManagerEmitter = new NativeEventEmitter(BleManagerModule);
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Home from "./Home";
+import Control from "./Control";
+import Guide from "./Guide";
 
+
+const Tab = createBottomTabNavigator();
 
 const App = ()=>{
   return(
-    <View>
-
-    </View>
+    <NavigationContainer>
+    <Tab.Navigator screenOptions={{ headerShown: false, tabBarIconStyle:{display:"none"}}}>
+        <Tab.Screen name='My Home'component={Home}/>
+        <Tab.Screen name="Control" component={Control} />
+        <Tab.Screen name="Guide" component={Guide} />
+    </Tab.Navigator>
+</NavigationContainer>
   )
 }
 
